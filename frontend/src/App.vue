@@ -71,8 +71,8 @@
   <div class="md:w-[700px] w-[90%]">
     <Search @updateDatas="handleUpdateDatas" />
 
-    <div class="" v-if="isDataNull == true">
-      <h1>Tidak bisa menemukan ...</h1>
+    <div class="mt-36" v-if="isDataNull == true">
+      <h1 class="md:text-[30px] text-3xl font-semibold text-white text-center">Oopss .. Tidak bisa menemukan data</h1>
     </div>
 
     
@@ -89,19 +89,19 @@
         List Mahasiswa</h1>
         <div class="mt-7">
 
-          <div v-for="(data, index) in displayedDatas" :key="index" class="w-full fadeup-animation flex items-center group h-[85px] bg-slate-700/50 z-[3] mb-4 rounded-md cursor-pointer">
+          <div v-for="(data, index) in displayedDatas" :key="index" class="w-full fadeup-animation flex items-center group md:h-[85px] h-full py-4 bg-slate-700/50 z-[3] mb-4 rounded-md cursor-pointer">
             <div class="mx-4 flex items-center w-full gap-6">
-              <div class="">
+              <div class="md:block hidden">
                 <div class="flex items-center justify-center w-[30px] h-[30px] border-[3px] border-slate-500 rounded-full">
                   <div class="w-[15px] h-[15px] bg-slate-500 rounded-full hidden group-hover:block"></div>
                 </div>
               </div>  
               <div class="">
-                  <h2 class="text-white font-medium tracking-wider">{{ data.nama }}</h2>
-                  <p class="text-sm text-white opacity-75 ">{{ data.nama_pt }} - {{ data.nama_prodi }}</p>
+                  <h2 class="text-white font-medium tracking-wider mb-2 leading-[1.2]">{{ data.nama }} <span class="ms-1 text-xs md:hidden inline"> ({{ data.nim }})</span></h2>
+                  <p class="md:text-sm text-xs text-white opacity-75 ">{{ data.nama_pt }} - {{ data.nama_prodi }}</p>
               </div>
-              <div class="ms-auto">
-                <div class="bg-slate-500 rounded-full px-3  py-1 text-xs text-white opacity-[80%]">
+              <div class="ms-auto md:block hidden">
+                <div class="bg-slate-500 rounded-full px-3 py-1 text-xs text-white opacity-[80%]">
                   {{ data.nim }}
                 </div>
               </div>

@@ -1,6 +1,6 @@
 <script setup>
 
-import { ref, defineEmits } from 'vue';
+import { ref } from 'vue';
 import axios from 'axios';
 
 const inputSearch = ref('')
@@ -14,16 +14,15 @@ const clearInput = (e) => {
 const handleSearchMahasiswa = async (e) => {
     e.preventDefault()
 
-    await axios.get(`http://localhost:3000/check?q=${inputSearch.value}`)
-    .then((res) => {
-        const datas = res.data
-        console.log(res)
-        // emit('updateDatas', datas);
-    })
-    .catch((res) => {
-        // emit('updateDatas', 1);
-        console.error(res);
-    });
+    try {
+        const res = await axios.get(`http://localhost:3000/check?q=${inputSearch.value}`);
+        const datas = res.data;
+        emit('updateDatas', datas);
+    } catch (error) {
+        if (error.response && error.response.status === 500) {
+            emit('updateDatas', 1);
+        }
+    }
 }
 
 </script>
